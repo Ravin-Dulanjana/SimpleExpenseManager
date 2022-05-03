@@ -39,7 +39,7 @@ public class PersistentAccountDAO extends SQLiteOpenHelper implements AccountDAO
 
     @Override
     public List<String> getAccountNumbersList() {
-        List<String> accNums = new ArrayList<>();
+        List<String> accountNumbers = new ArrayList<>();
 
         String queryString = "SELECT accountNo from ACCOUNTS";
 
@@ -50,7 +50,7 @@ public class PersistentAccountDAO extends SQLiteOpenHelper implements AccountDAO
         if(cursor.moveToFirst()){
             do{
                 String accNum = cursor.getString(0);
-                accNums.add(accNum);
+                accountNumbers.add(accNum);
             }while (cursor.moveToNext());
         }
         else {
@@ -60,12 +60,12 @@ public class PersistentAccountDAO extends SQLiteOpenHelper implements AccountDAO
         }
         cursor.close();
         db.close();
-        return  accNums;
+        return  accountNumbers;
     }
 
     @Override
     public List<Account> getAccountsList() {
-        List<Account> accs = new ArrayList<>();
+        List<Account> accountList = new ArrayList<>();
 
         String queryString = "SELECT * from ACCOUNTS";
 
@@ -82,7 +82,7 @@ public class PersistentAccountDAO extends SQLiteOpenHelper implements AccountDAO
 
                 Account newAcc = new Account(accNum,bankName, accHolderName, balance);
 
-                accs.add(newAcc);
+                accountList.add(newAcc);
             }while (cursor.moveToNext());
         }
         else {
@@ -92,7 +92,7 @@ public class PersistentAccountDAO extends SQLiteOpenHelper implements AccountDAO
         }
         cursor.close();
         db.close();
-        return  accs;
+        return  accountList;
     }
 
     @Override
